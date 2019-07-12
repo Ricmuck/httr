@@ -180,6 +180,10 @@ http_error.integer <- function(x, ...) {
   x >= 400L
 }
 
+http_error.simpleError <- function(x, ...) {
+  FALSE
+  }
+
 #' @export
 #' @rdname http_error
 #' @usage NULL
