@@ -50,7 +50,8 @@ RETRY <- function(verb, url = NULL, config = list(), ...,
                   times = 3, pause_base = 1, pause_cap = 60, pause_min = 1,
                   handle = NULL, quiet = FALSE,
                   terminate_on = NULL,
-                  terminate_on_success = TRUE) {
+                  terminate_on_success = TRUE,
+                 task = 1) {
   stopifnot(is.numeric(times), length(times) == 1L)
   stopifnot(is.numeric(pause_base), length(pause_base) == 1L)
   stopifnot(is.numeric(pause_cap), length(pause_cap) == 1L)
@@ -107,7 +108,7 @@ backoff_full_jitter <- function(i, resp, pause_base = 1, pause_cap = 60,
         length <- max(pause_min, as.numeric(retry_after))
       }
     }
-    message(error_description, "Request failed [", status, "]. Retrying in ", round(length, 1), " seconds...")
+    message(error_description, "Task [",task,"] Request failed [", status, "]. Retrying in ", round(length, 1), " seconds...")
   }
   Sys.sleep(length)
 }
